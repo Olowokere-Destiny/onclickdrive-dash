@@ -4,7 +4,22 @@ const nextConfig: NextConfig = {
   /* config options here */
   reactStrictMode: true,
   images: {
-    domains: ["img.favpng.com", "thumbs.dreamstime.com"],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'img.favpng.com',
+        port: '',
+        pathname: '/**',
+        search: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 'thumbs.dreamstime.com',
+        port: '',
+        pathname: '/**',
+        search: '',
+      },
+    ],
   },
 };
 

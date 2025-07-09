@@ -10,7 +10,7 @@ const poppins = Poppins({
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <div className={poppins.className}>
+    <div className={`${poppins.className}`}>
       <Toaster />
       <Navbar />
       <main>{children}</main>

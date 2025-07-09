@@ -11,8 +11,8 @@ const NavBar = () => {
   if (pathname !== "/") return null;
 
   return (
-    <nav className="border-b border-slate-300 py-3 px-4 md:px-8 lg:px-10 flex justify-between">
-      <Link href="/" className="font-semibold text-2xl text-blue-800">
+    <nav className="border-b border-slate-300 py-3 px-4 md:px-8 lg:px-10 flex justify-between h-[60px]">
+      <Link href="/" className="font-semibold text-2xl bg-clip-text bg-gradient-to-r text-transparent from-black to-black/60">
         Dashboard
       </Link>
       {user.status === "authenticated" && (
