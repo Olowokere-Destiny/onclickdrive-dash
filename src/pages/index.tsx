@@ -19,7 +19,7 @@ export const getServerSideProps: GetServerSideProps<{
     };
   }
 
-  const res = await fetch(`http://localhost:3000/api/table-data`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/api/table-data`);
   if (res.ok) {
     const data = await res.json();
     return {

@@ -15,7 +15,7 @@ export default function ListngsTable({
 }: {
   data: TableDetails[] | null;
 }) {
-  console.log(data);
+  // console.log(data);
   return (
     <div className="p-4 lg:p-8 border rounded-lg">
       <Table>

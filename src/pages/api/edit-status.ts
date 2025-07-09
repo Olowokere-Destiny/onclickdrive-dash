@@ -9,6 +9,7 @@ export default async function editStatus(
   res: NextApiResponse
 ) {
   const { id, admin, status } = req.body;
+
   if (!id || !admin || !status) {
     return res.status(400).json({ message: "Bad request" });
   }
