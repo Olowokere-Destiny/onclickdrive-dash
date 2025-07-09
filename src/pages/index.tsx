@@ -4,6 +4,8 @@ import { authOptons } from "@/pages/utils/authOptions";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { getServerSession } from "next-auth/next";
 import { TableDetails } from "./utils/types";
+import StatusFilter from "@/components/StatusFilter";
+import { useEffect, useState } from "react";
 
 export const getServerSideProps: GetServerSideProps<{
   data: TableDetails[];
@@ -34,11 +36,24 @@ export const getServerSideProps: GetServerSideProps<{
 };
 
 function Dashboard({ data }: { data: TableDetails[] | null }) {
+  const [tableData, setTableData] = useState<TableDetails[] | null>(null);
+  const [filter, setFilter] = useState("");
+  const filterData = tableData?.filter((item) => {
+    if (!filter || filter === "all") {
+      return tableData;
+    } else {
+      return item.status === filter;
+    }
+  });
+  useEffect(() => {
+    setTableData(data);
+  }, [data]);
   return (
     <div className="h-[calc(100vh-60px)] w-full flex items-center overflow-hidden">
       <SideBar />
       <div className="flex-1 h-full p-8 overflow-auto">
-        <ListngsTable data={data} />
+        <StatusFilter setFilter={setFilter} />
+        <ListngsTable data={filterData!} />
       </div>
     </div>
   );

@@ -1,9 +1,11 @@
 import {
   Table,
   TableBody,
-  TableCaption, TableHead,
+  TableCaption,
+  TableCell,
+  TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import { TableDetails } from "@/pages/utils/types";
 import ListingRow from "./TableRow";
@@ -27,15 +29,23 @@ export default function ListngsTable({
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data?.map((car) => (
-            <ListingRow
-              key={car.id}
-              id={car.id}
-              history={car.history}
-              listing={car.listing}
-              status={car.status}
-            />
-          ))}
+          {!data?.length && (
+            <TableRow>
+              <TableCell colSpan={4} className="text-center">
+                no data
+              </TableCell>
+            </TableRow>
+          )}
+          {data &&
+            data?.map((car) => (
+              <ListingRow
+                key={car.id}
+                id={car.id}
+                history={car.history}
+                listing={car.listing}
+                status={car.status}
+              />
+            ))}
         </TableBody>
       </Table>
     </div>
