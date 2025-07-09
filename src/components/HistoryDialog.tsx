@@ -10,12 +10,15 @@ import { useContext, useEffect, useState } from "react";
 import { AppContext } from "./AppContext";
 import { toast } from "sonner";
 import { TableDetails } from "@/pages/utils/types";
+import { Loader } from "lucide-react";
 
 function HistoryDialog({ id }: { id: number }) {
   const { isHistoryOpen, setIsHistoryOpen } = useContext(AppContext)!;
   const [data, setData] = useState<TableDetails | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const getRow = async () => {
+    setIsLoading(true);
     const fetchOptions = {
       method: "POST",
       body: JSON.stringify({ id }),
@@ -30,11 +33,13 @@ function HistoryDialog({ id }: { id: number }) {
     );
 
     if (!res.ok) {
+      setIsLoading(false);
       return toast.error("Couldn't get row detail");
     }
 
     if (res.ok) {
       const data = await res.json();
+      setIsLoading(false);
       setData(data);
     }
   };
@@ -65,8 +70,14 @@ function HistoryDialog({ id }: { id: number }) {
           <p className="text-lg text-center">{data?.listing}</p>
         </DialogHeader>
 
+        {isLoading && (
+          <div className="flex justify-center">
+            <Loader className="my-6 animate-spin" size={20} />
+          </div>
+        )}
+
         {/* starting from 1 because pending is set by default on all the data */}
-        {!data?.history.slice(1).length ? (
+        {!isLoading && !data?.history.slice(1).length ? (
           <p className="text-slate-700 text-center my-6">No history</p>
         ) : (
           <ul className="text-center">

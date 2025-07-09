@@ -1,11 +1,9 @@
 import {
   Table,
   TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
+  TableCaption, TableHead,
   TableHeader,
-  TableRow,
+  TableRow
 } from "@/components/ui/table";
 import { TableDetails } from "@/pages/utils/types";
 import ListingRow from "./TableRow";
