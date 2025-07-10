@@ -7,6 +7,7 @@ import { TableDetails } from "../utils/types";
 import StatusFilter from "@/components/StatusFilter";
 import { useEffect, useState } from "react";
 import MobileDrawer from "@/components/Drawer";
+import Head from "next/head";
 
 export const getServerSideProps: GetServerSideProps<{
   data: TableDetails[];
@@ -50,13 +51,18 @@ function Dashboard({ data }: { data: TableDetails[] | null }) {
     setTableData(data);
   }, [data]);
   return (
-    <div className="h-[calc(100vh-60px)] w-full flex items-center overflow-hidden">
-      <SideBar />
-      <div className="flex-1 h-full p-8 overflow-auto">
-        <StatusFilter setFilter={setFilter} />
-        <ListngsTable data={filterData!} />
+    <>
+      <Head>
+        <title>OneClick Dashboard</title>
+      </Head>
+      <div className="h-[calc(100vh-60px)] w-full flex items-center overflow-hidden">
+        <SideBar />
+        <div className="flex-1 h-full p-8 overflow-auto">
+          <StatusFilter setFilter={setFilter} />
+          <ListngsTable data={filterData!} />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
