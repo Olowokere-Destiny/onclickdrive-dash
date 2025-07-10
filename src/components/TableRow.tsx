@@ -17,7 +17,13 @@ function ListingRow({ history, id, listing, status }: TableDetails) {
   const [rowDetails, setRowdetails] = useState<TableDetails | null>(null);
   const [statusTextStyle, setstatusTextStyle] = useState("");
   const { data } = useSession();
-  const { setRowNumber, setIsHistoryOpen } = useContext(AppContext)!;
+  const {
+    setRowNumber,
+    setIsHistoryOpen,
+    setIsEditOpen,
+    setEditDetails,
+    editDetails,
+  } = useContext(AppContext)!;
 
   useEffect(() => {
     setRowdetails({ history, id, status, listing });
@@ -34,6 +40,17 @@ function ListingRow({ history, id, listing, status }: TableDetails) {
       setstatusTextStyle("text-red-500");
     }
   }, [rowDetails]);
+
+  useEffect(() => {
+    if (editDetails && editDetails?.id === rowDetails?.id) {
+      setRowdetails({
+        history: editDetails?.history,
+        id: editDetails?.id,
+        listing: editDetails?.listing,
+        status: editDetails?.status,
+      });
+    }
+  }, [editDetails]);
 
   const handleUpdateStats = async (
     id: number,
@@ -70,7 +87,7 @@ function ListingRow({ history, id, listing, status }: TableDetails) {
     }
   };
 
-  // console.log("rendering row" + rowDetails?.id); // im using this log to check if only current row updates (it does)
+  // console.log("rendering row" + rowDetails?.id);
 
   return (
     <TableRow className="text-center">
@@ -98,7 +115,14 @@ function ListingRow({ history, id, listing, status }: TableDetails) {
             >
               Reject
             </DropdownMenuItem>
-            <DropdownMenuItem>Edit</DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => {
+                setEditDetails(rowDetails);
+                setIsEditOpen(true);
+              }}
+            >
+              Edit
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </TableCell>

@@ -5,7 +5,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { TableDetails } from "@/pages/utils/types";
 import { Dispatch, SetStateAction } from "react";
 interface Props {
   setFilter: Dispatch<SetStateAction<string>>;

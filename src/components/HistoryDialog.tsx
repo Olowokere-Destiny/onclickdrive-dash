@@ -57,7 +57,6 @@ function HistoryDialog({ id }: { id: number }) {
     return () => clearTimeout(timeout);
   }, [isHistoryOpen]);
 
-  console.log(data);
 
   return (
     <Dialog open={isHistoryOpen} onOpenChange={setIsHistoryOpen}>

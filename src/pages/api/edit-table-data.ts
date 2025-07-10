@@ -8,7 +8,6 @@ export default async function editData(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-
   const { id, admin, listing, status } = req.body;
   if (!id || !admin || !listing || !status) {
     return res.status(400).json({ message: "Bad request" });
@@ -21,8 +20,16 @@ export default async function editData(
     id,
     listing,
     status,
-    history: [...currentData.history, { user: admin, action: status }],
+    history: [],
   };
+
+  // to prevent sending another status update from edit form
+  if (status !== currentData.status) {
+    newObj.history = [...currentData.history, { user: admin, action: status }];
+  } else {
+    newObj.history = [...currentData.history];
+  }
+
   const filterData = tabledata.filter((item) => item.id !== id);
   filterData.push(newObj);
   const sortData = filterData.sort((a, b) => a.id - b.id);
@@ -31,5 +38,5 @@ export default async function editData(
     JSON.stringify(sortData),
     { encoding: "utf8" }
   );
-  return res.status(200).json({ message: "updated successfully" });
+  return res.status(200).json(newObj);
 }
