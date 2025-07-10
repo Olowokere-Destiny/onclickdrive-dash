@@ -2,8 +2,8 @@ import { TableDetails } from "@/utils/types";
 import { createContext, Dispatch, SetStateAction } from "react";
 
 interface Props {
-  rowNumber: number | null;
-  setRowNumber: Dispatch<SetStateAction<number | null>>;
+  rowId: string | null;
+  setRowId: Dispatch<SetStateAction<string | null>>;
   isHistoryOpen: boolean;
   setIsHistoryOpen: Dispatch<SetStateAction<boolean>>;
   isSidebarOpen: boolean;

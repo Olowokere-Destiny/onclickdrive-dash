@@ -8,7 +8,7 @@ import { AppContext } from "@/components/AppContext";
 import HistoryDialog from "@/components/HistoryDialog";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [rowNumber, setRowNumber] = useState<number | null>(null);
+  const [rowId, setRowId] = useState<string | null>(null);
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
@@ -17,8 +17,8 @@ export default function App({ Component, pageProps }: AppProps) {
       value={{
         isSidebarOpen,
         setSidebarOpen,
-        rowNumber,
-        setRowNumber,
+        rowId,
+        setRowId,
         isHistoryOpen,
         setIsHistoryOpen,
       }}
@@ -26,7 +26,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <SessionProvider session={pageProps.session}>
         <Layout>
           <Component {...pageProps} />
-          <HistoryDialog id={rowNumber as number} />
+          <HistoryDialog id={rowId as string} />
         </Layout>
       </SessionProvider>
     </AppContext.Provider>

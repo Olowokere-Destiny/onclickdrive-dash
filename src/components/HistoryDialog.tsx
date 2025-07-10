@@ -12,7 +12,7 @@ import { toast } from "sonner";
 import { TableDetails } from "@/utils/types";
 import { Loader } from "lucide-react";
 
-function HistoryDialog({ id }: { id: number }) {
+function HistoryDialog({ id }: { id: string }) {
   const { isHistoryOpen, setIsHistoryOpen } = useContext(AppContext)!;
   const [data, setData] = useState<TableDetails | null>(null);
   const [isLoading, setIsLoading] = useState(false);

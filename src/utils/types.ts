@@ -10,7 +10,7 @@ interface History {
 }
 
 export interface TableDetails {
-  id: number;
+  _id: string;
   listing: string;
   status: string;
   history: History[];

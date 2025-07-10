@@ -52,8 +52,8 @@ export default function ListngsTable({
           {sliceData &&
             sliceData?.map((car) => (
               <ListingRow
-                key={car.id}
-                id={car.id}
+                key={car._id}
+                _id={car._id}
                 history={car.history}
                 listing={car.listing}
                 status={car.status}

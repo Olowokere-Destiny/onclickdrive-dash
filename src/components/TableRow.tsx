@@ -22,11 +22,11 @@ import { AppContext } from "./AppContext";
 import { Input } from "./ui/input";
 import { Loader, X } from "lucide-react";
 
-function ListingRow({ history, id, listing, status }: TableDetails) {
+function ListingRow({ history, _id, listing, status }: TableDetails) {
   const [rowDetails, setRowdetails] = useState<TableDetails | null>(null);
   const [statusTextStyle, setstatusTextStyle] = useState("");
   const { data } = useSession();
-  const { setRowNumber, setIsHistoryOpen } = useContext(AppContext)!;
+  const { setRowId, setIsHistoryOpen } = useContext(AppContext)!;
   const [editFormOpen, setEditFormOpen] = useState(false);
   const [formData, setFormData] = useState({
     listing: "",
@@ -36,7 +36,7 @@ function ListingRow({ history, id, listing, status }: TableDetails) {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setRowdetails({ history, id, status, listing });
+    setRowdetails({ history, _id, status, listing });
   }, []);
 
   useEffect(() => {
@@ -64,7 +64,7 @@ function ListingRow({ history, id, listing, status }: TableDetails) {
     const fetchOptions = {
       method: "PATCH",
       body: JSON.stringify({
-        id: rowDetails?.id,
+        id: rowDetails?._id,
         listing: formData?.listing,
         status: formData?.status,
         admin: user.data?.user?.name,
@@ -87,7 +87,7 @@ function ListingRow({ history, id, listing, status }: TableDetails) {
     if (res.ok) {
       const data: TableDetails | null = await res.json();
       setRowdetails({
-        id: data!.id,
+        _id: data!._id,
         history: data!.history,
         listing: data!.listing,
         status: data!.status,
@@ -99,7 +99,7 @@ function ListingRow({ history, id, listing, status }: TableDetails) {
   };
 
   const handleUpdateStats = async (
-    id: number,
+    id: string,
     admin: string,
     status: string
   ) => {
@@ -123,15 +123,18 @@ function ListingRow({ history, id, listing, status }: TableDetails) {
 
     if (res.ok) {
       toast.success("Update successful");
+      const data: TableDetails = await res.json();
       setRowdetails((prev) => ({
         ...prev,
-        status: status,
-        id,
-        history,
-        listing,
+        status: data.status,
+        _id: data._id,
+        history: data.history,
+        listing: data.listing,
       }));
     }
   };
+
+  console.log(rowDetails)
 
   // console.log("rendering row" + rowDetails?.id); im using this to check updated row
 
@@ -150,14 +153,14 @@ function ListingRow({ history, id, listing, status }: TableDetails) {
             <DropdownMenuContent>
               <DropdownMenuItem
                 onClick={() =>
-                  handleUpdateStats(id, data?.user?.name as string, "approved")
+                  handleUpdateStats(_id, data?.user?.name as string, "approved")
                 }
               >
                 Approve
               </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={() =>
-                  handleUpdateStats(id, data?.user?.name as string, "rejected")
+                  handleUpdateStats(_id, data?.user?.name as string, "rejected")
                 }
               >
                 Reject
@@ -176,7 +179,7 @@ function ListingRow({ history, id, listing, status }: TableDetails) {
             variant="link"
             className="cursor-pointer"
             onClick={() => {
-              setRowNumber(id);
+              setRowId(_id);
               setIsHistoryOpen(true);
             }}
           >
