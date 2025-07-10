@@ -59,6 +59,7 @@ function ListingRow({ history, id, listing, status }: TableDetails) {
 
   const edit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.listing || !formData.status) return;
     setIsLoading(true);
     const fetchOptions = {
       method: "PATCH",
