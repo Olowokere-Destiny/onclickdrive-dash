@@ -1,3 +1,4 @@
+"use client";
 import {
   Select,
   SelectContent,
@@ -5,7 +6,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Dispatch, SetStateAction } from "react";
+import { PanelLeft } from "lucide-react";
+import { Dispatch, SetStateAction, useContext } from "react";
+import { AppContext } from "./AppContext";
 interface Props {
   setFilter: Dispatch<SetStateAction<string>>;
 }
@@ -13,9 +16,18 @@ function StatusFilter({ setFilter }: Props) {
   const handleFilter = (status: string) => {
     setFilter(status);
   };
+  const { isSidebarOpen, setSidebarOpen } = useContext(AppContext)!;
 
   return (
-    <div className="flex justify-end mb-4">
+    <div className="relative flex justify-end mb-4">
+      {!isSidebarOpen && (
+        <PanelLeft
+          size={20}
+          className="md:hidden absolute -left-4 top-0"
+          onClick={() => setSidebarOpen(true)}
+        />
+      )}
+
       <Select onValueChange={(value) => handleFilter(value)}>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Filter by" />

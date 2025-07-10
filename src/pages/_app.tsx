@@ -10,10 +10,13 @@ import HistoryDialog from "@/components/HistoryDialog";
 export default function App({ Component, pageProps }: AppProps) {
   const [rowNumber, setRowNumber] = useState<number | null>(null);
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <AppContext.Provider
       value={{
+        isSidebarOpen,
+        setSidebarOpen,
         rowNumber,
         setRowNumber,
         isHistoryOpen,

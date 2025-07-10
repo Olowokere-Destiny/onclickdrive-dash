@@ -6,6 +6,7 @@ import { getServerSession } from "next-auth/next";
 import { TableDetails } from "./utils/types";
 import StatusFilter from "@/components/StatusFilter";
 import { useEffect, useState } from "react";
+import MobileDrawer from "@/components/Drawer";
 
 export const getServerSideProps: GetServerSideProps<{
   data: TableDetails[];

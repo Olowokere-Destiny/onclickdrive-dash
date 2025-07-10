@@ -20,7 +20,7 @@ import { useSession } from "next-auth/react";
 import { toast } from "sonner";
 import { AppContext } from "./AppContext";
 import { Input } from "./ui/input";
-import { Loader } from "lucide-react";
+import { Loader, X } from "lucide-react";
 
 function ListingRow({ history, id, listing, status }: TableDetails) {
   const [rowDetails, setRowdetails] = useState<TableDetails | null>(null);
@@ -216,13 +216,24 @@ function ListingRow({ history, id, listing, status }: TableDetails) {
                   <SelectItem value="rejected">Rejected</SelectItem>
                 </SelectContent>
               </Select>
-              <Button
-                disabled={isLoading}
-                className="cursor-pointer"
-                type="submit"
-              >
-                {isLoading ? <Loader className="animate-spin" /> : "Edit"}
-              </Button>
+              <div className="flex items-center gap-x-2">
+                <Button
+                  disabled={isLoading}
+                  className="cursor-pointer"
+                  type="submit"
+                >
+                  {isLoading ? <Loader className="animate-spin" /> : "Edit"}
+                </Button>
+                <Button
+                  disabled={isLoading}
+                  className="cursor-pointer"
+                  type="button"
+                  variant="outline"
+                  onClick={() => setEditFormOpen(false)}
+                >
+                  <X />
+                </Button>
+              </div>
             </form>
           </TableCell>
         </TableRow>

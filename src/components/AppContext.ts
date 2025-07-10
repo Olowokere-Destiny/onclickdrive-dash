@@ -6,5 +6,7 @@ interface Props {
   setRowNumber: Dispatch<SetStateAction<number | null>>;
   isHistoryOpen: boolean;
   setIsHistoryOpen: Dispatch<SetStateAction<boolean>>;
+  isSidebarOpen: boolean;
+  setSidebarOpen: Dispatch<SetStateAction<boolean>>;
 }
 export const AppContext = createContext<Props | null>(null);
