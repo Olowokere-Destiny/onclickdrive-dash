@@ -30,6 +30,7 @@ const LoginForm = () => {
     }));
   };
 
+  
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setloginPending(true);
@@ -48,6 +49,15 @@ const LoginForm = () => {
       console.log(error);
     } finally {
       setloginPending(false);
+    }
+  };
+  
+  const handleCustomLogin = (admin: "batman" | "destiny") => {
+    if (admin === "batman") {
+      setUserDetails({ username: "batman", password: "thedarkknight" });
+    }
+    if (admin === "destiny") {
+      setUserDetails({ username: "destiny", password: "123456" });
     }
   };
 
@@ -91,6 +101,26 @@ const LoginForm = () => {
       <Button disabled={loginPending} className="cursor-pointer" type="submit">
         {loginPending ? <Loader className="animate-spin" /> : "Log in"}
       </Button>
+      <div className="flex justify-between">
+        <Button
+          disabled={loginPending}
+          className="cursor-pointer"
+          variant="outline"
+          onClick={() => handleCustomLogin("batman")}
+          type="button"
+        >
+          Log in as Batman
+        </Button>
+        <Button
+          disabled={loginPending}
+          className="cursor-pointer"
+          variant="outline"
+          onClick={() => handleCustomLogin("destiny")}
+          type="button"
+        >
+          Log in as Destiny
+        </Button>
+      </div>
     </form>
   );
 };
