@@ -1,6 +1,5 @@
 import { connectDb } from "@/lib/connectMongodb";
 import { Table } from "@/lib/models/tableModel";
-import tabledata from "@/utils/tableData.json";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function getTableData(
