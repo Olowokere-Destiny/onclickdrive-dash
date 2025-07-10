@@ -1,9 +1,9 @@
 import SideBar from "@/components/SideBar";
 import ListngsTable from "@/components/Table";
-import { authOptons } from "@/pages/utils/authOptions";
+import { authOptons } from "@/utils/authOptions";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { getServerSession } from "next-auth/next";
-import { TableDetails } from "./utils/types";
+import { TableDetails } from "../utils/types";
 import StatusFilter from "@/components/StatusFilter";
 import { useEffect, useState } from "react";
 import MobileDrawer from "@/components/Drawer";

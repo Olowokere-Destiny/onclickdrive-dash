@@ -1,4 +1,4 @@
-import { TableDetails } from "@/pages/utils/types";
+import { TableDetails } from "@/utils/types";
 import SideBar from "./SideBar";
 import ListngsTable from "./Table";
 

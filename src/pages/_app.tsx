@@ -3,7 +3,7 @@ import type { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
 import Layout from "@/components/Layout";
 import { useState } from "react";
-import { TableDetails } from "./utils/types";
+import { TableDetails } from "@/utils/types";
 import { AppContext } from "@/components/AppContext";
 import HistoryDialog from "@/components/HistoryDialog";
 

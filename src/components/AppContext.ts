@@ -1,4 +1,4 @@
-import { TableDetails } from "@/pages/utils/types";
+import { TableDetails } from "@/utils/types";
 import { createContext, Dispatch, SetStateAction } from "react";
 
 interface Props {

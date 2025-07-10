@@ -1,5 +1,5 @@
-import { UserDetails } from "@/pages/utils/types";
-import { user } from "../../utils/user";
+import { UserDetails } from "@/utils/types";
+import { user } from "@/utils/user";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function loginUser(

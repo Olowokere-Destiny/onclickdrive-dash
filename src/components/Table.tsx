@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { TableDetails } from "@/pages/utils/types";
+import { TableDetails } from "@/utils/types";
 import ListingRow from "./TableRow";
 import TablePagination from "./TablePagination";
 import { useEffect, useState } from "react";

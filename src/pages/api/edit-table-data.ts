@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import tabledata from "../utils/tableData.json";
+import tabledata from "@/utils/tableData.json";
 import path from "path";
 import { promises as fspromise } from "fs";
-import { TableDetails } from "../utils/types";
+import { TableDetails } from "@/utils/types";
 
 export default async function editData(
   req: NextApiRequest,
@@ -34,7 +34,7 @@ export default async function editData(
   filterData.push(newObj);
   const sortData = filterData.sort((a, b) => a.id - b.id);
   await fspromise.writeFile(
-    path.join(process.cwd(), "src", "pages", "utils", "tableData.json"),
+    path.join(process.cwd(), "src", "utils", "tableData.json"),
     JSON.stringify(sortData),
     { encoding: "utf8" }
   );

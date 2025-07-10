@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { Button } from "./ui/button";
-import { TableDetails } from "@/pages/utils/types";
+import { TableDetails } from "@/utils/types";
 
 function TablePagination({
   data,

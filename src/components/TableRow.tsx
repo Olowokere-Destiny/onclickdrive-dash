@@ -1,7 +1,7 @@
 "use client";
 import { useContext, useEffect, useState } from "react";
 import { TableCell, TableRow } from "./ui/table";
-import { TableDetails } from "@/pages/utils/types";
+import { TableDetails } from "@/utils/types";
 import { Button } from "./ui/button";
 import {
   DropdownMenu,

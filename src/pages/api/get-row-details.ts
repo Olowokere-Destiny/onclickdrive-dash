@@ -1,4 +1,4 @@
-import tabledata from "../utils/tableData.json";
+import tabledata from "@/utils/tableData.json";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function getRowData(

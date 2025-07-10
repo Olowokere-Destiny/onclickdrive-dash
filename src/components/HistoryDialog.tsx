@@ -9,7 +9,7 @@ import {
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "./AppContext";
 import { toast } from "sonner";
-import { TableDetails } from "@/pages/utils/types";
+import { TableDetails } from "@/utils/types";
 import { Loader } from "lucide-react";
 
 function HistoryDialog({ id }: { id: number }) {
