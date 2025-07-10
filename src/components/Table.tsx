@@ -1,3 +1,4 @@
+"use client";
 import {
   Table,
   TableBody,
@@ -9,6 +10,8 @@ import {
 } from "@/components/ui/table";
 import { TableDetails } from "@/pages/utils/types";
 import ListingRow from "./TableRow";
+import TablePagination from "./TablePagination";
+import { useEffect, useState } from "react";
 
 export default function ListngsTable({
   data,
@@ -16,6 +19,16 @@ export default function ListngsTable({
   data: TableDetails[] | null;
 }) {
   // console.log(data);
+  const [sliceBy, setSliceBy] = useState<number>(0);
+  const [sliceData, setSliceData] = useState<TableDetails[] | null>();
+
+  useEffect(() => {
+    if (data) {
+      const sliceitems = sliceBy === 0 ? data.slice(0, 5) : data.slice(5);
+      setSliceData(sliceitems);
+    }
+  }, [data, sliceBy]);
+
   return (
     <div className="p-4 lg:p-8 border rounded-lg">
       <Table>
@@ -29,15 +42,15 @@ export default function ListngsTable({
           </TableRow>
         </TableHeader>
         <TableBody>
-          {!data?.length && (
+          {!sliceData?.length && (
             <TableRow>
               <TableCell colSpan={4} className="text-center">
                 no data
               </TableCell>
             </TableRow>
           )}
-          {data &&
-            data?.map((car) => (
+          {sliceData &&
+            sliceData?.map((car) => (
               <ListingRow
                 key={car.id}
                 id={car.id}
@@ -48,6 +61,7 @@ export default function ListngsTable({
             ))}
         </TableBody>
       </Table>
+      <TablePagination sliceBy={sliceBy} data={data} setSliceBy={setSliceBy} />
     </div>
   );
 }
